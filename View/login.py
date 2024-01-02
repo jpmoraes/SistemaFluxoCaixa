@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import menuPrincipal as mp
+import Controller.login as contLog
 
 class Login:
     def __init__(self, root):
@@ -41,7 +42,9 @@ class Login:
         usuario = self.entrada_usuario.get()
         senha = self.entrada_senha.get()
 
-        if usuario == "root" and senha == "root":
+        acessarLog = contLog.LoginController()        
+
+        if  acessarLog.verify_login(usuario, senha):
             messagebox.showinfo("Login", "Login bem-sucedido!")
             self.abrir_menu_principal()
         else:
@@ -55,6 +58,7 @@ class Login:
 
     def mostrar_janela_login(self):
         self.root.deiconify()  # Exibe a janela de login novamente
+
 
 if __name__ == "__main__":
     root = tk.Tk()
